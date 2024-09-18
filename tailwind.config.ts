@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        "to-do-black": "#44403C",
         "to-do-blue": "#075985",
         "to-do-red": "#BE123C ",
         "to-do-white": "#F0F9FF",

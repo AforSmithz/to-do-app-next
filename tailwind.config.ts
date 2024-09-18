@@ -9,8 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "to-do-blue": "#075985",
+        "to-do-red": "#BE123C ",
+        "to-do-white": "#F0F9FF",
+        "to-do-error": "#E11D48",
+        "button-red": "#9F1239",
       },
     },
   },

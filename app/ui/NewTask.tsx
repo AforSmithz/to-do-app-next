@@ -1,0 +1,89 @@
+import { Field, Form, Formik } from "formik";
+import { TodoType } from "lib/definitions";
+
+interface NewTaskInterface {
+  todos: TodoType[];
+  setTodos: (curr: TodoType[]) => void;
+  setIsAdding: (adding: boolean) => void;
+}
+
+export default function NewTask({
+  todos,
+  setTodos,
+  setIsAdding,
+}: NewTaskInterface) {
+  return (
+    <Formik
+      initialValues={{ "to-do": "" }}
+      validate={(values: { "to-do": string }) => {
+        const errors: { "to-do"?: string } = {};
+
+        if (!values["to-do"]) {
+          errors["to-do"] = "Required";
+        } else if (values["to-do"].length > 100) {
+          errors["to-do"] =
+            "Title must be shorter than or equal to 100 characters";
+        }
+        return errors;
+      }}
+      onSubmit={(values, { setSubmitting, resetForm }) => {
+        const newTodo = [
+          ...todos,
+          {
+            id: todos.length + 1,
+            task: values["to-do"],
+            isComplete: false,
+          },
+        ];
+        setTodos(newTodo);
+        resetForm();
+        setIsAdding(false);
+        setSubmitting(false);
+      }}
+    >
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleSubmit,
+        isSubmitting,
+      }) => (
+        <Form
+          className="w-full flex justify-between items-start"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex flex-col w-full gap-2">
+            <Field
+              as="textarea"
+              placeholder="Add new to-do title..."
+              id="to-do"
+              name="to-do"
+              onChange={handleChange}
+              value={values["to-do"]}
+              className="bg-[#fafaf9] outline-none w-full resize-none"
+            />
+            <div className="text-to-do-error text-xs">
+              {errors["to-do"] && touched["to-do"] && errors["to-do"]}
+            </div>
+          </div>
+          <div className="flex items-center justify-center gap-5">
+            <div
+              onClick={() => setIsAdding(false)}
+              className="text-to-do-blue font-semibold cursor-pointer flex items-center justify-center "
+            >
+              Cancel
+            </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-to-do-blue text-to-do-white font-semibold cursor-pointer rounded-lg px-4 py-2 flex items-center justify-center "
+            >
+              Create
+            </button>
+          </div>
+        </Form>
+      )}
+    </Formik>
+  );
+}

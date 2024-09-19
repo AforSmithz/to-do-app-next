@@ -15,11 +15,19 @@ export default function Home() {
   >([]);
 
   const handleDelete = (id: number) => {
-    setTodos([...todos.filter((t) => t.id != id)]);
+    setTodos([...todos.filter((t) => t.id !== id)]);
+  };
+  const handleMark = (id: number) => {
+    const currTodo = [...todos];
+    const [markedItems] = currTodo.filter((t) => t.id === id);
+    markedItems.isComplete = true;
+    currTodo.push(currTodo.splice(currTodo.indexOf(markedItems), 1)[0]);
+    setTodos(currTodo);
+    console.log("after update: ", todos);
   };
 
   return (
-    <main className="bg-[#fafaf9] h-screen w-full flex flex-col items-center justify-start gap-5 pt-20 px-80">
+    <main className="bg-[#fafaf9] h-screen w-full flex flex-col items-center justify-start gap-5 pt-10 px-80">
       <section className="w-full flex justify-between">
         <div className="text-to-do-title flex justify-start items-end font-bold text-2xl">
           Things you should be doing today...
@@ -118,10 +126,19 @@ export default function Home() {
           return (
             <section
               key={i}
-              className="w-full flex flex-col items-center justify-center"
+              className={`w-full flex flex-col items-center justify-center ${
+                item.isComplete && "opacity-50"
+              }`}
             >
-              <div className=" bg-white drop-shadow text-to-do-black font-medium w-full flex items-center justify-center gap-3 rounded-lg p-3">
-                <div className="text-stone-100 text-lg cursor-pointer">
+              <div
+                className={`bg-white drop-shadow text-to-do-black font-medium w-full flex items-center justify-center gap-3 rounded-lg p-3`}
+              >
+                <div
+                  onClick={() => handleMark(item.id)}
+                  className={`${
+                    item.isComplete ? "text-emerald-600" : "text-stone-100"
+                  } text-lg cursor-pointer`}
+                >
                   <FaCheckCircle />
                 </div>
                 <div className="flex justify-start grow">{item.task}</div>

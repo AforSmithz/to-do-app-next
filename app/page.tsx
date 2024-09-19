@@ -3,9 +3,11 @@ import { useState } from "react";
 import { Field, Form, Formik } from "formik";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
+import Modal from "ui/modal";
 
 export default function Home() {
   const [isAdding, setIsAdding] = useState<boolean>(false);
+  const [modalIsOpen, setModal] = useState<boolean>(false);
   const [todos, setTodos] = useState<
     {
       id: number;
@@ -26,6 +28,11 @@ export default function Home() {
     console.log("after update: ", todos);
   };
 
+  const handleClear = () => {
+    setTodos([]);
+    setModal(false);
+ };
+ 
   return (
     <main className="bg-[#fafaf9] h-screen w-full flex flex-col items-center justify-start gap-5 pt-10 px-80">
       <section className="w-full flex justify-between">
@@ -41,7 +48,10 @@ export default function Home() {
               Add New
             </div>
           )}
-          <div className="text-to-do-red font-semibold cursor-pointer flex items-center justify-center ">
+          <div
+            onClick={() => setModal(true)}
+            className="text-to-do-red font-semibold cursor-pointer flex items-center justify-center "
+          >
             Clear
           </div>
         </div>
@@ -159,6 +169,7 @@ export default function Home() {
           </div>
         </section>
       )}
+      {modalIsOpen && <Modal setModal={setModal} handleClear={handleClear} />}
     </main>
   );
 }

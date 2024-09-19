@@ -50,10 +50,10 @@ export default function NewTask({
         isSubmitting,
       }) => (
         <Form
-          className="w-full flex justify-between items-start"
+          className="w-full flex flex-wrap sm:flex-nowrap justify-between items-start"
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col w-full gap-2">
+          <div className="flex flex-col w-full sm:w-auto flex-grow gap-2">
             <Field
               as="textarea"
               placeholder="Add new to-do title..."
@@ -70,14 +70,14 @@ export default function NewTask({
           <div className="flex items-center justify-center gap-5">
             <div
               onClick={() => setIsAdding(false)}
-              className="text-to-do-blue font-semibold cursor-pointer flex items-center justify-center "
+              className="text-to-do-blue text-sm sm:text-base md:text-lg font-semibold cursor-pointer flex items-center justify-center "
             >
               Cancel
             </div>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-to-do-blue text-to-do-white font-semibold cursor-pointer rounded-lg px-4 py-2 flex items-center justify-center "
+              className="bg-to-do-blue text-to-do-white text-sm sm:text-base md:text-lg font-semibold cursor-pointer rounded-lg px-4 py-2 flex items-center justify-center "
             >
               Create
             </button>

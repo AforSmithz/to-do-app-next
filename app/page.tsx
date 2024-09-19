@@ -21,7 +21,6 @@ export default function Home() {
     markedItems.isComplete = true;
     currTodo.push(currTodo.splice(currTodo.indexOf(markedItems), 1)[0]);
     setTodos(currTodo);
-    console.log("after update: ", todos);
   };
 
   const handleClear = () => {
@@ -30,7 +29,7 @@ export default function Home() {
   };
 
   return (
-    <main className="bg-[#fafaf9] h-screen w-full flex flex-col items-center justify-start gap-5 pt-10 px-80">
+    <main className="bg-[#fafaf9] h-screen w-full flex flex-col items-center justify-start gap-5 pt-10 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-80">
       <Heading
         isAdding={isAdding}
         setIsAdding={setIsAdding}

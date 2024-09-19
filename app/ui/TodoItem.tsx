@@ -18,12 +18,12 @@ export default function TodoItem({
 }: TodoItemProps) {
   return (
     <section
-      className={`w-full flex flex-col items-center justify-center ${
+      className={`w-full flex flex-wrap flex-col items-center justify-center ${
         item.isComplete && "opacity-50"
       }`}
     >
       <div
-        className={`bg-white drop-shadow text-to-do-black font-medium w-full flex items-center justify-center gap-3 rounded-lg p-3`}
+        className={`bg-white drop-shadow text-to-do-black font-medium w-full flex items-center justify-between gap-3 rounded-lg p-3`}
       >
         <div
           onClick={() => handleMark(item.id)}

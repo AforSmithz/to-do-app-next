@@ -70,14 +70,14 @@ export default function NewTask({
           <div className="flex items-center justify-center gap-5">
             <div
               onClick={() => setIsAdding(false)}
-              className="text-to-do-blue text-sm sm:text-base md:text-lg font-semibold cursor-pointer flex items-center justify-center "
+              className="text-to-do-blue text-sm sm:text-base font-semibold cursor-pointer flex items-center justify-center "
             >
               Cancel
             </div>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-to-do-blue text-to-do-white text-sm sm:text-base md:text-lg font-semibold cursor-pointer rounded-lg px-4 py-2 flex items-center justify-center "
+              className="bg-to-do-blue text-to-do-white text-sm sm:text-base font-semibold cursor-pointer rounded-lg px-4 py-2 flex items-center justify-center "
             >
               Create
             </button>

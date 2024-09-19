@@ -1,5 +1,6 @@
-import { Field, Form, Formik } from "formik";
+import { Field, Formik } from "formik";
 import { TodoType } from "lib/definitions";
+import { motion } from "framer-motion";
 
 interface NewTaskInterface {
   todos: TodoType[];
@@ -12,6 +13,18 @@ export default function NewTask({
   setTodos,
   setIsAdding,
 }: NewTaskInterface) {
+  const newVariants = {
+    initial: {
+      y: -100,
+    },
+    animate: {
+      y: 1,
+    },
+    exit: {
+      y: -100,
+    },
+  };
+
   return (
     <Formik
       initialValues={{ "to-do": "" }}
@@ -49,8 +62,12 @@ export default function NewTask({
         handleSubmit,
         isSubmitting,
       }) => (
-        <Form
-          className="w-full flex flex-wrap sm:flex-nowrap justify-between items-start"
+        <motion.form
+          variants={newVariants}
+          initial={"initial"}
+          animate={"animate"}
+          exit={"exit"}
+          className="z-0 w-full flex flex-wrap sm:flex-nowrap justify-between items-start"
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col w-full sm:w-auto flex-grow gap-2">
@@ -82,7 +99,7 @@ export default function NewTask({
               Create
             </button>
           </div>
-        </Form>
+        </motion.form>
       )}
     </Formik>
   );

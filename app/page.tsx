@@ -6,6 +6,7 @@ import NoneCard from "ui/NoneCard";
 import Heading from "ui/Heading";
 import NewTask from "ui/NewTask";
 import { TodoType } from "lib/definitions";
+import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [isAdding, setIsAdding] = useState<boolean>(false);
@@ -29,15 +30,21 @@ export default function Home() {
   };
 
   return (
-    <main className="bg-[#fafaf9] h-screen w-full flex flex-col items-center justify-start gap-5 pt-10 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-80">
+    <main className="bg-[#fafaf9] h-screen w-full flex flex-col items-center justify-start gap-5 pt-10 sm:pt-0 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-80">
       <Heading
         isAdding={isAdding}
         setIsAdding={setIsAdding}
         setModal={setModal}
       />
-      {isAdding && (
-        <NewTask todos={todos} setTodos={setTodos} setIsAdding={setIsAdding} />
-      )}
+      <AnimatePresence>
+        {isAdding && (
+          <NewTask
+            todos={todos}
+            setTodos={setTodos}
+            setIsAdding={setIsAdding}
+          />
+        )}
+      </AnimatePresence>
       {todos.length > 0 ? (
         todos.map((item, i) => {
           return (

@@ -16,10 +16,14 @@ export default function Modal({ setModal, handleClear }: ModalProps) {
                 Confirm to clear all todos?
               </p>
             </div>
-            <div className="bg-stone-50 border-t border-solid border-blueGray-200 px-8 py-3 flex items-center justify-center gap-3  rounded-b-xl">
-              <Button text="Cancel" handler={() => setModal(false)} />
+            <div className="bg-stone-50 border-t border-solid border-blueGray-200 px-8 py-3 flex items-center justify-center gap-3 rounded-b-xl">
               <Button
-                className="bg-button-red text-white"
+                className="px-10"
+                text="Cancel"
+                handler={() => setModal(false)}
+              />
+              <Button
+                className="bg-button-red text-white px-10"
                 text="Confirm"
                 handler={handleClear}
               />

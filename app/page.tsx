@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   return (
-    <main className="bg-[#fafaf9] h-screen w-full flex flex-col items-center justify-start gap-5 pt-10 sm:pt-0 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-80">
+    <main className="bg-[#fafaf9] h-screen w-full flex flex-col items-center justify-start gap-5 pt-8 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-80">
       <Heading
         isAdding={isAdding}
         setIsAdding={setIsAdding}

@@ -67,7 +67,7 @@ export default function NewTask({
           initial={"initial"}
           animate={"animate"}
           exit={"exit"}
-          className="z-0 w-full flex flex-wrap sm:flex-nowrap justify-between items-start"
+          className="z-0 w-full flex flex-wrap sm:flex-nowrap justify-between items-start px-3 pt-2"
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col w-full sm:w-auto flex-grow gap-2">
@@ -78,7 +78,7 @@ export default function NewTask({
               name="to-do"
               onChange={handleChange}
               value={values["to-do"]}
-              className="bg-[#fafaf9] outline-none w-full resize-none"
+              className="bg-[#fafaf9] outline-none w-full resize-none placeholder:leading-10 placeholder:text-stone-300"
             />
             <div className="text-to-do-error text-xs">
               {errors["to-do"] && touched["to-do"] && errors["to-do"]}
@@ -87,14 +87,14 @@ export default function NewTask({
           <div className="flex items-center justify-center gap-5">
             <div
               onClick={() => setIsAdding(false)}
-              className="text-to-do-blue text-sm sm:text-base font-semibold cursor-pointer flex items-center justify-center "
+              className="text-to-do-blue text-sm font-semibold cursor-pointer flex items-center justify-center "
             >
               Cancel
             </div>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-to-do-blue text-to-do-white text-sm sm:text-base font-semibold cursor-pointer rounded-lg px-4 py-2 flex items-center justify-center "
+              className="bg-to-do-blue text-to-do-white text-sm font-semibold cursor-pointer rounded-lg px-4 py-2 flex items-center justify-center "
             >
               Create
             </button>

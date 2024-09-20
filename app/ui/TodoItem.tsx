@@ -1,5 +1,6 @@
 import { FaCheckCircle } from "react-icons/fa";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
+import { motion } from "framer-motion";
 
 interface TodoItemProps {
   item: {
@@ -17,7 +18,8 @@ export default function TodoItem({
   handleDelete,
 }: TodoItemProps) {
   return (
-    <section
+    <motion.section
+      layout
       className={`w-full flex flex-wrap flex-col items-center justify-center ${
         item.isComplete && "opacity-50"
       }`}
@@ -41,6 +43,6 @@ export default function TodoItem({
           <IoIosRemoveCircleOutline />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

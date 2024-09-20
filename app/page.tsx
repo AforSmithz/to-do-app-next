@@ -13,6 +13,9 @@ export default function Home() {
   const [modalIsOpen, setModal] = useState<boolean>(false);
   const [todos, setTodos] = useState<TodoType[]>([]);
 
+  const completed = todos.filter((t) => t.isComplete);
+  const uncompleted = todos.filter((t) => !t.isComplete);
+
   const handleDelete = (id: number) => {
     setTodos([...todos.filter((t) => t.id !== id)]);
   };
@@ -20,7 +23,6 @@ export default function Home() {
     const currTodo = [...todos];
     const [markedItems] = currTodo.filter((t) => t.id === id);
     markedItems.isComplete = true;
-    currTodo.push(currTodo.splice(currTodo.indexOf(markedItems), 1)[0]);
     setTodos(currTodo);
   };
 
@@ -46,16 +48,28 @@ export default function Home() {
         )}
       </AnimatePresence>
       {todos.length > 0 ? (
-        todos.map((item, i) => {
-          return (
-            <TodoItem
-              key={i}
-              item={item}
-              handleMark={handleMark}
-              handleDelete={handleDelete}
-            />
-          );
-        })
+        <>
+          {uncompleted.map((item, i) => {
+            return (
+              <TodoItem
+                key={i}
+                item={item}
+                handleMark={handleMark}
+                handleDelete={handleDelete}
+              />
+            );
+          })}
+          {completed.map((item, i) => {
+            return (
+              <TodoItem
+                key={i}
+                item={item}
+                handleMark={handleMark}
+                handleDelete={handleDelete}
+              />
+            );
+          })}
+        </>
       ) : (
         <NoneCard />
       )}

@@ -49,16 +49,18 @@ export default function Home() {
       </AnimatePresence>
       {todos.length > 0 ? (
         <>
-          {uncompleted.map((item, i) => {
-            return (
-              <TodoItem
-                key={i}
-                item={item}
-                handleMark={handleMark}
-                handleDelete={handleDelete}
-              />
-            );
-          })}
+          <AnimatePresence>
+            {uncompleted.map((item, i) => {
+              return (
+                <TodoItem
+                  key={i}
+                  item={item}
+                  handleMark={handleMark}
+                  handleDelete={handleDelete}
+                />
+              );
+            })}
+          </AnimatePresence>
           {completed.map((item, i) => {
             return (
               <TodoItem

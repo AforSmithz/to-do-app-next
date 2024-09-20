@@ -20,7 +20,10 @@ export default function TodoItem({
   return (
     <motion.section
       layout
-      className={`w-full flex flex-wrap flex-col items-center justify-center ${
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: item.isComplete ? 0.5 : 1 }}
+      exit={{ y: 100, opacity: 0 }}
+      className={`w-full flex flex-wrap flex-col items-center justify-center origin-bottom ${
         item.isComplete && "opacity-50"
       }`}
     >
